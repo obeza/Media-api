@@ -1,0 +1,25 @@
+{
+  "name": "mediaapi",
+  "version": "0.0.1",
+  "description": "api pour CMS Media",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/obeza/Media-api.git"
+  },
+  "author": "Olivier BEZAUDIN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/obeza/Media-api/issues"
+  },
+  "homepage": "https://github.com/obeza/Media-api#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "deep-rename-keys": "^0.2.0",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.10"
+  }
+}
