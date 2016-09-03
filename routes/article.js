@@ -1,9 +1,10 @@
 'use strict';
 
-var express = require('express');
-var router = express.Router();
-var modelArticle = require('./../models/article');
-var renameKeys = require('deep-rename-keys');
+const express = require('express');
+const router = express.Router();
+const modelArticle = require('./../models/article');
+const renameKeys = require('deep-rename-keys');
+const fs = require('fs');
 
 router.route('/articles')
 .get((req, res)=>{
@@ -32,10 +33,19 @@ router.route('/article')
 .post((req, res)=>{
 
     let data = req.body;
+    console.log( data.titre );
 
-    modelArticle.create( data, (err, article)=>{
+    modelArticle.create( {
+        titre : data.titre,
+        contenu : data.contenu,
+        rubrique : data.rubrique
+    }, (err, article)=>{
         if (err){
-            return console.log(err)
+            console.log(err);
+            res.json({
+                code : 'error'
+            })
+             
         } else {
             res.json({
                 code : 'ok',
@@ -61,6 +71,7 @@ router.route('/article')
         if (err){
             return console.log(err)
         } else {
+            console.log("modifie " + data.titre);
             res.json({
                 code : 'ok'
             })
@@ -82,6 +93,11 @@ router.route('/article/:id')
     
 })
 
+router.get( '/remove/:id', (req, res)=>{
 
+  fs.unlinkSync('public/' + req.params.id );
+  res.json({code:'ok'});
+
+})
 
 module.exports = router;
